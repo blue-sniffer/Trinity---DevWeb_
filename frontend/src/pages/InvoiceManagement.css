@@ -1,0 +1,459 @@
+/* ===== INVOICE MANAGEMENT - INSTAGRAM LIGHT THEME ===== */
+
+.invoice-management {
+  padding: 24px;
+  background: transparent;
+}
+
+/* Invoices Section */
+.invoices-section {
+  background: #FFFFFF;
+  border: 1px solid #DBDBDB;
+  border-radius: 10px;
+  padding: 24px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+  margin-top: 24px;
+}
+
+/* Invoice Table */
+.invoice-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #FFFFFF;
+  border: 1px solid #DBDBDB;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+  margin-top: 16px;
+}
+
+.invoice-table thead {
+  background: #FAFAFA;
+}
+
+.invoice-table th {
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 12px;
+  color: #8E8E8E;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid #DBDBDB;
+  background: #FAFAFA;
+}
+
+.invoice-table td {
+  padding: 12px 16px;
+  color: #262626;
+  font-size: 14px;
+  border-bottom: 1px solid #EFEFEF;
+}
+
+.invoice-table tbody tr:hover {
+  background: #FAFAFA;
+}
+
+/* Action Buttons in Table */
+.invoice-table .action-btn {
+  padding: 6px 12px;
+  margin-right: 4px;
+  font-size: 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  text-transform: none;
+  white-space: nowrap;
+}
+
+.invoice-table .view-btn,
+.invoice-table .download-btn {
+  background: #0095F6;
+  color: #FFFFFF;
+}
+
+.invoice-table .view-btn:hover,
+.invoice-table .download-btn:hover {
+  background: #1877F2;
+}
+
+.invoice-table .delete-btn {
+  background: transparent;
+  color: #ED4956;
+  border: 1px solid #ED4956;
+}
+
+.invoice-table .delete-btn:hover {
+  background: #FEF2F2;
+}
+
+/* Status Badge */
+.status-badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.status-badge.pending {
+  background: #FEF3C7;
+  color: #92400E;
+}
+
+.status-badge.completed {
+  background: #DBEAFE;
+  color: #1E40AF;
+}
+
+.status-badge.cancelled {
+  background: #FEE2E2;
+  color: #991B1B;
+}
+
+/* Invoice Form */
+.invoice-form {
+  background: #FFFFFF;
+  border: 1px solid #DBDBDB;
+  border-radius: 10px;
+  padding: 24px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+  margin-top: 16px;
+}
+
+.form-section {
+  margin-bottom: 24px;
+}
+
+.form-section h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #262626;
+  margin-bottom: 12px;
+  text-transform: none;
+  border-bottom: 1px solid #EFEFEF;
+  padding-bottom: 8px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.form-row.full {
+  grid-template-columns: 1fr;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: #262626;
+  margin-bottom: 8px;
+  text-transform: none;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 9px 10px;
+  background: #FAFAFA;
+  color: #262626;
+  border: 1px solid #DBDBDB;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: inherit;
+  transition: all 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #0095F6;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 149, 246, 0.1);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid #EFEFEF;
+}
+
+.form-actions button {
+  padding: 10px 20px;
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+  text-transform: none;
+}
+
+.form-actions .btn-primary {
+  background: #0095F6;
+  color: #FFFFFF;
+}
+
+.form-actions .btn-primary:hover {
+  background: #1877F2;
+}
+
+.form-actions .btn-secondary {
+  background: transparent;
+  color: #0095F6;
+  border: 1px solid #DBDBDB;
+}
+
+.form-actions .btn-secondary:hover {
+  background: #FAFAFA;
+}
+
+/* Invoice Items */
+.invoice-items {
+  background: #FAFAFA;
+  border: 1px solid #EFEFEF;
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 16px;
+}
+
+.invoice-items h4 {
+  color: #262626;
+  font-weight: 600;
+  margin-bottom: 12px;
+  text-transform: none;
+}
+
+.item-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 0.5fr;
+  gap: 12px;
+  align-items: end;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #EFEFEF;
+}
+
+.item-row:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.item-row input {
+  padding: 9px 10px;
+  background: #FFFFFF;
+  color: #262626;
+  border: 1px solid #DBDBDB;
+  border-radius: 6px;
+  font-size: 14px;
+  width: 100%;
+}
+
+.item-row button {
+  padding: 9px 12px;
+  background: transparent;
+  color: #ED4956;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.item-row button:hover {
+  color: #C41E3A;
+}
+
+.item-total {
+  text-align: right;
+  font-size: 14px;
+  font-weight: 600;
+  color: #262626;
+  padding: 12px 0;
+}
+
+/* Invoice Summary */
+.invoice-summary {
+  background: #FAFAFA;
+  border: 1px solid #EFEFEF;
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 16px;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  font-size: 14px;
+  color: #262626;
+}
+
+.summary-row.total {
+  border-top: 1px solid #EFEFEF;
+  padding-top: 12px;
+  font-weight: 700;
+  font-size: 16px;
+  color: #0095F6;
+}
+
+/* Search & Filter */
+.search-filter {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.search-box {
+  flex: 1;
+  position: relative;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 9px 10px;
+  background: #FAFAFA;
+  color: #262626;
+  border: 1px solid #DBDBDB;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.search-box input:focus {
+  border-color: #0095F6;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 149, 246, 0.1);
+}
+
+.filter-dropdown {
+  padding: 9px 10px;
+  background: #FAFAFA;
+  color: #262626;
+  border: 1px solid #DBDBDB;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter-dropdown:focus {
+  border-color: #0095F6;
+  outline: none;
+}
+
+/* Status & Messages */
+.success-message {
+  background: #F1F5FE;
+  color: #2ECC71;
+  border: 1px solid #BEE3F8;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.error-message {
+  background: #FEF2F2;
+  color: #ED4956;
+  border: 1px solid #FECACA;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.loading {
+  color: #8E8E8E;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  padding: 24px;
+  text-transform: none;
+}
+
+.no-invoices {
+  text-align: center;
+  padding: 40px 24px;
+  color: #C7C7C7;
+  font-size: 14px;
+}
+
+/* Modal Styles for Invoice Details */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #EFEFEF;
+}
+
+.modal-header h2 {
+  margin: 0;
+  color: #262626;
+  font-weight: 700;
+  font-size: 22px;
+  text-transform: none;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #8E8E8E;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.2s ease;
+}
+
+.modal-close:hover {
+  color: #262626;
+}
+
+.invoice-detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  font-size: 14px;
+  border-bottom: 1px solid #EFEFEF;
+}
+
+.invoice-detail-row:last-child {
+  border-bottom: none;
+}
+
+.invoice-detail-label {
+  font-weight: 600;
+  color: #8E8E8E;
+  text-transform: none;
+}
+
+.invoice-detail-value {
+  color: #262626;
+  font-weight: 500;
+}

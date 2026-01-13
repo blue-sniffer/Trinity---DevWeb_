@@ -1,0 +1,66 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  /* lighter overlay so the image reads more vividly */
+  background: linear-gradient(rgba(255,255,255,0.45), rgba(255,255,255,0.45)), url('/images/login-bg.jpeg') center/cover no-repeat;
+  background-attachment: fixed;
+}
+
+.login-box {
+  background: rgba(255,255,255,0.95);
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+  width: 100%;
+  max-width: 420px;
+}
+
+.login-box h1 {
+  margin: 0 0 10px 0;
+  color: #333;
+  font-size: 24px;
+}
+
+.login-box p {
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.login-box input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.login-box button {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(180deg, #0095F6, #0083e6);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 150ms ease, box-shadow 150ms ease;
+  box-shadow: 0 3px 10px rgba(3,102,214,0.12);
+}
+
+.login-box button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(3,102,214,0.14);
+}
+
+.error {
+  background: #fee;
+  color: #c33;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  font-size: 14px;
+}

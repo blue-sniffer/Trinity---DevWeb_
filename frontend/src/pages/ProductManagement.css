@@ -1,0 +1,470 @@
+/* ===== PRODUCT MANAGEMENT - INSTAGRAM LIGHT THEME ===== */
+
+.product-management {
+  padding: 24px;
+  background: transparent;
+}
+
+/* Products Section */
+.products-section {
+  background: #FFFFFF;
+  border: 1px solid #DBDBDB;
+  border-radius: 10px;
+  padding: 24px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+  margin-top: 24px;
+}
+
+/* Product Cards Grid */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.product-card {
+  background: #FFFFFF;
+  border: 1px solid #DBDBDB;
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+  transition: all 0.2s ease;
+}
+
+.product-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+.product-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.product-info h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #262626;
+  margin-bottom: 8px;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.product-price {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0095F6;
+  margin-bottom: 8px;
+}
+
+.product-sku {
+  font-size: 12px;
+  color: #8E8E8E;
+  margin-bottom: 12px;
+}
+
+.product-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.product-actions button {
+  flex: 1;
+  padding: 8px 12px;
+  font-size: 13px;
+  background: #0095F6;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.product-actions button:hover {
+  background: #1877F2;
+}
+
+.product-actions button.delete {
+  background: transparent;
+  color: #ED4956;
+  border: 1px solid #ED4956;
+}
+
+.product-actions button.delete:hover {
+  background: #FEF2F2;
+}
+
+/* Product Form */
+.product-form {
+  background: #FFFFFF;
+  border: 1px solid #DBDBDB;
+  border-radius: 10px;
+  padding: 24px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+  margin-top: 16px;
+}
+
+.form-section {
+  margin-bottom: 24px;
+}
+
+.form-section h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #262626;
+  margin-bottom: 12px;
+  text-transform: none;
+  border-bottom: 1px solid #EFEFEF;
+  padding-bottom: 8px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.form-row.full {
+  grid-template-columns: 1fr;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: #262626;
+  margin-bottom: 8px;
+  text-transform: none;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 9px 10px;
+  background: #FAFAFA;
+  color: #262626;
+  border: 1px solid #DBDBDB;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: inherit;
+  transition: all 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #0095F6;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 149, 246, 0.1);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid #EFEFEF;
+}
+
+.form-actions button {
+  padding: 10px 20px;
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+  text-transform: none;
+}
+
+.form-actions .btn-primary {
+  background: #0095F6;
+  color: #FFFFFF;
+}
+
+.form-actions .btn-primary:hover {
+  background: #1877F2;
+}
+
+.form-actions .btn-secondary {
+  background: transparent;
+  color: #0095F6;
+  border: 1px solid #DBDBDB;
+}
+
+.form-actions .btn-secondary:hover {
+  background: #FAFAFA;
+}
+
+/* Search & Filter */
+.search-filter {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.search-box {
+  flex: 1;
+  position: relative;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 9px 10px;
+  background: #FAFAFA;
+  color: #262626;
+  border: 1px solid #DBDBDB;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.search-box input:focus {
+  border-color: #0095F6;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 149, 246, 0.1);
+}
+
+.filter-dropdown {
+  padding: 9px 10px;
+  background: #FAFAFA;
+  color: #262626;
+  border: 1px solid #DBDBDB;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter-dropdown:focus {
+  border-color: #0095F6;
+  outline: none;
+}
+
+/* Product Table */
+.product-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #FFFFFF;
+  border: 1px solid #DBDBDB;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+  margin-top: 16px;
+}
+
+.product-table thead {
+  background: #FAFAFA;
+}
+
+.product-table th {
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 12px;
+  color: #8E8E8E;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid #DBDBDB;
+  background: #FAFAFA;
+}
+
+.product-table td {
+  padding: 12px 16px;
+  color: #262626;
+  font-size: 14px;
+  border-bottom: 1px solid #EFEFEF;
+}
+
+.product-table tbody tr:hover {
+  background: #FAFAFA;
+}
+
+.product-table img {
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  border: 1px solid #DBDBDB;
+  object-fit: cover;
+}
+
+/* Action Buttons in Table */
+.product-table .action-btn {
+  padding: 6px 12px;
+  margin-right: 4px;
+  font-size: 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  text-transform: none;
+}
+
+.product-table .edit-btn {
+  background: #0095F6;
+  color: #FFFFFF;
+}
+
+.product-table .edit-btn:hover {
+  background: #1877F2;
+}
+
+.product-table .delete-btn {
+  background: transparent;
+  color: #ED4956;
+  border: 1px solid #ED4956;
+}
+
+.product-table .delete-btn:hover {
+  background: #FEF2F2;
+}
+
+/* Nutritional Info */
+.nutritional-info {
+  background: #FAFAFA;
+  border: 1px solid #EFEFEF;
+  border-radius: 8px;
+  padding: 12px;
+  margin-top: 8px;
+  font-size: 12px;
+}
+
+.nutritional-info h4 {
+  color: #262626;
+  font-weight: 600;
+  margin-bottom: 8px;
+  text-transform: none;
+}
+
+.nutritional-info p {
+  color: #8E8E8E;
+  margin: 4px 0;
+}
+
+/* Status & Messages */
+.success-message {
+  background: #F1F5FE;
+  color: #2ECC71;
+  border: 1px solid #BEE3F8;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.error-message {
+  background: #FEF2F2;
+  color: #ED4956;
+  border: 1px solid #FECACA;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.loading {
+  color: #8E8E8E;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  padding: 24px;
+  text-transform: none;
+}
+
+.no-products {
+  text-align: center;
+  padding: 40px 24px;
+  color: #C7C7C7;
+  font-size: 14px;
+}
+
+/* OpenFoodFacts Integration */
+.barcode-search {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.barcode-search input {
+  flex: 1;
+  padding: 9px 10px;
+  background: #FAFAFA;
+  color: #262626;
+  border: 1px solid #DBDBDB;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.barcode-search button {
+  padding: 9px 16px;
+  background: #0095F6;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.barcode-search button:hover {
+  background: #1877F2;
+}
+
+.openfoodfacts-results {
+  background: #FAFAFA;
+  border: 1px solid #EFEFEF;
+  border-radius: 8px;
+  padding: 12px;
+  margin-top: 12px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.openfoodfacts-result {
+  background: #FFFFFF;
+  border: 1px solid #DBDBDB;
+  border-radius: 6px;
+  padding: 12px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.openfoodfacts-result:hover {
+  border-color: #0095F6;
+  background: #F0F5FF;
+}
+
+.openfoodfacts-result strong {
+  color: #262626;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.openfoodfacts-result small {
+  color: #8E8E8E;
+  display: block;
+  font-size: 12px;
+}
