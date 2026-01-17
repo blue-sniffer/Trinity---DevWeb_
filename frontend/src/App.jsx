@@ -4,6 +4,7 @@ import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
 import CustomerDashboard from './pages/CustomerDashboard'
 import ProductManagement from './pages/ProductManagement'
+import Navbar from './components/Navbar'
 import './App.css'
 
 // Protected Route Component
@@ -33,6 +34,7 @@ function App() {
 
   return (
     <Router>
+      {token && <Navbar />}
       <Routes>
         {/* Login - Always accessible */}
         <Route path="/login" element={<Login />} />
@@ -63,6 +65,32 @@ function App() {
           element={
             <ProtectedRoute requiredRole="customer">
               <CustomerDashboard />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Customers Management - Only for admins (TODO) */}
+        <Route
+          path="/customers"
+          element={
+            <ProtectedRoute requiredRole="admin">
+              <div className="page-placeholder">
+                <h2>👥 Customer Management</h2>
+                <p>Coming soon...</p>
+              </div>
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Invoices Management - Only for admins (TODO) */}
+        <Route
+          path="/invoices"
+          element={
+            <ProtectedRoute requiredRole="admin">
+              <div className="page-placeholder">
+                <h2>🧾 Invoice Management</h2>
+                <p>Coming soon...</p>
+              </div>
             </ProtectedRoute>
           }
         />

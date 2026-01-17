@@ -124,3 +124,48 @@ select:focus {
     padding: 0 15px;
   }
 }
+
+/* Main Content Area */
+.page-placeholder {
+  min-height: calc(100vh - 70px);
+  padding: 2rem;
+  background: #f5f7fa;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.page-placeholder h2 {
+  font-size: 2rem;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.page-placeholder p {
+  font-size: 1.1rem;
+  color: #7f8c8d;
+}
+
+/* Dashboard Container */
+.dashboard-container {
+  min-height: calc(100vh - 70px);
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding: 2rem;
+}
+
+/* Main Container */
+main {
+  flex: 1;
+}
+
+/* Responsive Full Height */
+html, body, #root {
+  height: 100%;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
