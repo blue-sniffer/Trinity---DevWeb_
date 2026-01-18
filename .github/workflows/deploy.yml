@@ -1,0 +1,131 @@
+name: Deploy to AWS
+
+on:
+  push:
+    branches: 
+      - main
+      - develop
+  workflow_dispatch:
+
+env:
+  AWS_REGION: us-east-1
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - branch: develop
+            environment: dev
+          - branch: main
+            environment: prod
+    
+    # Only run on specific branches
+    if: github.ref == format('refs/heads/{0}', matrix.branch)
+    
+    environment:
+      name: ${{ matrix.environment }}
+      url: https://${{ matrix.environment }}.trinity-app.com
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-access-key-id: ${{ secrets[format('AWS_ACCESS_KEY_ID_{0}', matrix.environment)] }}
+        aws-secret-access-key: ${{ secrets[format('AWS_SECRET_ACCESS_KEY_{0}', matrix.environment)] }}
+        aws-region: ${{ env.AWS_REGION }}
+    
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v1
+    
+    - name: Load environment variables
+      run: |
+        if [ "${{ matrix.environment }}" = "prod" ]; then
+          echo "ECR_REPOSITORY_BACKEND=trinity-backend-prod" >> $GITHUB_ENV
+          echo "ECR_REPOSITORY_FRONTEND=trinity-frontend-prod" >> $GITHUB_ENV
+          echo "ECS_SERVICE_BACKEND=trinity-backend-prod" >> $GITHUB_ENV
+          echo "ECS_SERVICE_FRONTEND=trinity-frontend-prod" >> $GITHUB_ENV
+          echo "ECS_CLUSTER=trinity-prod" >> $GITHUB_ENV
+        else
+          echo "ECR_REPOSITORY_BACKEND=trinity-backend-dev" >> $GITHUB_ENV
+          echo "ECR_REPOSITORY_FRONTEND=trinity-frontend-dev" >> $GITHUB_ENV
+          echo "ECS_SERVICE_BACKEND=trinity-backend-dev" >> $GITHUB_ENV
+          echo "ECS_SERVICE_FRONTEND=trinity-frontend-dev" >> $GITHUB_ENV
+          echo "ECS_CLUSTER=trinity-dev" >> $GITHUB_ENV
+        fi
+        echo "IMAGE_TAG=${{ github.sha }}" >> $GITHUB_ENV
+        echo "ECR_REGISTRY=${{ steps.login-ecr.outputs.registry }}" >> $GITHUB_ENV
+    
+    - name: Build backend Docker image
+      run: |
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY_BACKEND:$IMAGE_TAG ./backend
+        docker tag $ECR_REGISTRY/$ECR_REPOSITORY_BACKEND:$IMAGE_TAG $ECR_REGISTRY/$ECR_REPOSITORY_BACKEND:latest
+    
+    - name: Build frontend Docker image
+      run: |
+        docker build \
+          --build-arg REACT_APP_API_URL=${{ secrets[format('REACT_APP_API_URL_{0}', matrix.environment)] }} \
+          -t $ECR_REGISTRY/$ECR_REPOSITORY_FRONTEND:$IMAGE_TAG ./frontend
+        docker tag $ECR_REGISTRY/$ECR_REPOSITORY_FRONTEND:$IMAGE_TAG $ECR_REGISTRY/$ECR_REPOSITORY_FRONTEND:latest
+    
+    - name: Push backend image to ECR
+      run: |
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY_BACKEND:$IMAGE_TAG
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY_BACKEND:latest
+    
+    - name: Push frontend image to ECR
+      run: |
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY_FRONTEND:$IMAGE_TAG
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY_FRONTEND:latest
+    
+    - name: Update ECS task definition for backend
+      id: task-def-backend
+      uses: aws-actions/amazon-ecs-render-task-definition@v1
+      with:
+        task-definition: ./infra/ecs/task-definition-backend-${{ matrix.environment }}.json
+        container-name: trinity-backend
+        image: ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY_BACKEND }}:${{ env.IMAGE_TAG }}
+        environment-variables: |
+          DEBUG=False
+          ENVIRONMENT=${{ matrix.environment }}
+    
+    - name: Update ECS task definition for frontend
+      id: task-def-frontend
+      uses: aws-actions/amazon-ecs-render-task-definition@v1
+      with:
+        task-definition: ./infra/ecs/task-definition-frontend-${{ matrix.environment }}.json
+        container-name: trinity-frontend
+        image: ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY_FRONTEND }}:${{ env.IMAGE_TAG }}
+    
+    - name: Deploy backend to ECS
+      uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+      with:
+        task-definition: ${{ steps.task-def-backend.outputs.task-definition }}
+        service: ${{ env.ECS_SERVICE_BACKEND }}
+        cluster: ${{ env.ECS_CLUSTER }}
+        wait-for-service-stability: true
+    
+    - name: Deploy frontend to ECS
+      uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+      with:
+        task-definition: ${{ steps.task-def-frontend.outputs.task-definition }}
+        service: ${{ env.ECS_SERVICE_FRONTEND }}
+        cluster: ${{ env.ECS_CLUSTER }}
+        wait-for-service-stability: true
+    
+    - name: Notify deployment
+      if: success()
+      run: |
+        echo "✅ Successfully deployed to ${{ matrix.environment }} environment"
+        echo "Backend image: ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY_BACKEND }}:${{ env.IMAGE_TAG }}"
+        echo "Frontend image: ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY_FRONTEND }}:${{ env.IMAGE_TAG }}"
+    
+    - name: Notify failure
+      if: failure()
+      run: |
+        echo "❌ Deployment to ${{ matrix.environment }} environment failed"
+        exit 1
