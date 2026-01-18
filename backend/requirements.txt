@@ -9,4 +9,5 @@ gunicorn
 drf-spectacular
 pytest
 pytest-django
+pytest-cov
 coverage

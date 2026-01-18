@@ -70,7 +70,7 @@ jobs:
         DATABASE_PORT: 5432
       run: |
         cd backend
-        python -m pytest api/tests.py --cov=api --cov-report=xml --cov-report=term-missing
+        pytest api/tests.py --cov=api --cov-report=xml --cov-report=term-missing
     
     - name: Upload coverage reports
       uses: codecov/codecov-action@v3
@@ -98,10 +98,11 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-npm-
     
-    - name: Install dependencies
+    - name: Clean install dependencies
       run: |
         cd frontend
-        npm ci
+        rm -f package-lock.json
+        npm install
     
     - name: Build frontend
       run: |
