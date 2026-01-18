@@ -68,10 +68,11 @@ jobs:
         DATABASE_PASSWORD: test_password
         DATABASE_HOST: localhost
         DATABASE_PORT: 5432
-        DJANGO_SETTINGS_MODULE: backend.settings
       run: |
         cd backend
-        pytest
+        coverage run --source='.' manage.py test api
+        coverage xml
+        coverage report
     
     - name: Upload coverage reports
       uses: codecov/codecov-action@v3
