@@ -68,6 +68,7 @@ jobs:
         DATABASE_PASSWORD: test_password
         DATABASE_HOST: localhost
         DATABASE_PORT: 5432
+        DJANGO_SETTINGS_MODULE: backend.settings
       run: |
         cd backend
         pytest
